@@ -1,0 +1,16 @@
+.icon {
+    font-size: 38px;
+}
+
+.white-card {
+    background-color: white;
+    color: black;
+}
+
+.white-card small {
+    color: gray;
+}
+
+h2 {
+    margin: 0;
+}
