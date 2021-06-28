@@ -10,6 +10,7 @@ import { MaterialModule } from './material.module';
 
 // Components
 import { QuestionDetailComponent } from './question/question-detail.component'
+import { AnswersComponent } from './answers/answers.component';
 
 // Scripts
 import { MomentModule } from 'ngx-moment';
@@ -18,6 +19,7 @@ import { MomentModule } from 'ngx-moment';
   declarations: [
     AppComponent,
     QuestionDetailComponent,
+    AnswersComponent,
   ],
   imports: [
     BrowserModule,
