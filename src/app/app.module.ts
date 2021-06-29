@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 // Material Angular
 import { MaterialModule } from './material.module';
@@ -16,12 +16,14 @@ import { AnswerFormComponent } from './answers/answer-form.component';
 
 // Scripts
 import { MomentModule } from 'ngx-moment';
+import { SigninScreenComponent } from './auth/signin-screen.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     QuestionDetailComponent,
     AnswerFormComponent,
+    SigninScreenComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,6 +32,7 @@ import { MomentModule } from 'ngx-moment';
     MaterialModule,
     MomentModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
