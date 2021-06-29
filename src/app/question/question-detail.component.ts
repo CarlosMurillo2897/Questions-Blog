@@ -12,6 +12,6 @@ export class QuestionDetailComponent {
         'Esta es una nueva pregunta sobre Android',
         'Miren, tengo una duda con una app que estoy escribiendo para Android...',
         new Date,
-        'devicon-android-plain'
+        'devicon-android-plain',
     );
 };

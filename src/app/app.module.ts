@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { FormsModule } from '@angular/forms';
+
 // Material Angular
 import { MaterialModule } from './material.module';
 
 // Components
 import { QuestionDetailComponent } from './question/question-detail.component'
-import { AnswersComponent } from './answers/answers.component';
+import { AnswerFormComponent } from './answers/answer-form.component';
 
 // Scripts
 import { MomentModule } from 'ngx-moment';
@@ -19,7 +21,7 @@ import { MomentModule } from 'ngx-moment';
   declarations: [
     AppComponent,
     QuestionDetailComponent,
-    AnswersComponent,
+    AnswerFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,7 @@ import { MomentModule } from 'ngx-moment';
     BrowserAnimationsModule,
     MaterialModule,
     MomentModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
