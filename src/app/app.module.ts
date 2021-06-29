@@ -17,6 +17,8 @@ import { AnswerFormComponent } from './answers/answer-form.component';
 // Scripts
 import { MomentModule } from 'ngx-moment';
 import { SigninScreenComponent } from './auth/signin-screen.component';
+import { SignupScreenComponent } from './auth/signup-screen.component';
+import { QuestionListComponent } from './question/question-list.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +26,8 @@ import { SigninScreenComponent } from './auth/signin-screen.component';
     QuestionDetailComponent,
     AnswerFormComponent,
     SigninScreenComponent,
+    SignupScreenComponent,
+    QuestionListComponent,
   ],
   imports: [
     BrowserModule,
