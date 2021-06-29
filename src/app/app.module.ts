@@ -13,12 +13,13 @@ import { MaterialModule } from './material.module';
 // Components
 import { QuestionDetailComponent } from './question/question-detail.component'
 import { AnswerFormComponent } from './answers/answer-form.component';
-
-// Scripts
-import { MomentModule } from 'ngx-moment';
 import { SigninScreenComponent } from './auth/signin-screen.component';
 import { SignupScreenComponent } from './auth/signup-screen.component';
 import { QuestionListComponent } from './question/question-list.component';
+import { QuestionFormComponent } from './question/question-form.component';
+
+// Scripts
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { QuestionListComponent } from './question/question-list.component';
     SigninScreenComponent,
     SignupScreenComponent,
     QuestionListComponent,
+    QuestionFormComponent,
   ],
   imports: [
     BrowserModule,
