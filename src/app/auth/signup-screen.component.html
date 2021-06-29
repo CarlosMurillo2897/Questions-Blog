@@ -1,15 +1,19 @@
 <form [formGroup]="signinForm" (ngSubmit)="onSubmit()">
     <mat-form-field>
-        <input matInput placeholder="Nombre" formControlName="nombre" id="nombre">
+        <input matInput placeholder="First Name" formControlName="nombre" id="nombre">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Apellido" formControlName="apellido" id="apellido">
+        <input matInput placeholder="Last Name" formControlName="apellido" id="apellido">
     </mat-form-field>
     <mat-form-field>
-        <input matInput placeholder="Correo electronico" formControlName="email" id="email">        
+        <input matInput placeholder="Email" formControlName="email" id="email">        
     </mat-form-field>
     <mat-form-field>
-        <input matInput type="password" placeholder="Contrasena" formControlName="password" id="password"> 
+        <input matInput type="password" placeholder="Password" formControlName="password" id="password"> 
     </mat-form-field>
-    <button type="submit" mat-raised-button color="accent">Crear Usuario</button>
+    <button type="submit" mat-raised-button color="accent">Create User</button>
+    <p style="text-align: center;">
+        Already an user?
+        <a mat-button color="primary" [routerLink]="['/signin']">LogIn</a>
+    </p>
 </form>

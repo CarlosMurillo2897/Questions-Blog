@@ -5,7 +5,7 @@
       <h2>{{ question.title }}</h2>
     </mat-card-title>
     <mat-card-subtitle>
-      <small>Sacha Lifszyc - {{ question.createdAt | amLocale:'es' | amTimeAgo }}</small>
+      <small>Sacha Lifszyc - {{ question.createdAt | amTimeAgo }}</small>
     </mat-card-subtitle>
   </mat-card-header>
   <mat-card-content>
@@ -13,17 +13,17 @@
   </mat-card-content>
 </mat-card>
 <div class="answers">
-  <h3>Respuestas</h3>
+  <h3>Answers</h3>
   <ul class="answers-list" *ngIf="question.answers.length > 0">
     <li *ngFor="let answer of question.answers">
       <h5>{{ answer.user?.fullName() }}
-        <small>{{ answer.createdAt | amLocale: 'es' | amTimeAgo }}</small>
+        <small>{{ answer.createdAt | amTimeAgo }}</small>
       </h5>
       <p class="description">
         {{ answer.description }}
       </p>
     </li>
   </ul>
-  <p *ngIf="question.answers.length === 0">Se el primero en responder esta pregunta.</p>
+  <p *ngIf="question.answers.length === 0">Be the first one to answer.</p>
   <app-answer-form class="answer-form" [question]="question"></app-answer-form>
 </div>

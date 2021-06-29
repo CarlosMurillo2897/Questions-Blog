@@ -9,8 +9,8 @@ import { Question } from './question.model';
 
 export class QuestionDetailComponent {
     question: Question = new Question(
-        'Esta es una nueva pregunta sobre Android',
-        'Miren, tengo una duda con una app que estoy escribiendo para Android...',
+        'Quick Question on Android',
+        'Look, I\'ve a doubt with some app that Im buidling...',
         new Date,
         'devicon-android-plain',
     );

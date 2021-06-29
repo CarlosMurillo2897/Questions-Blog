@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { Question } from './question.model';
 
 const q = new Question(
-    'Como reutilizo un componente en Android?',
-    'Miren, esta es mi pregunta...',
+    'How can I reuse a Component on Android?',
+    'I\'m a begginer on Android development.. So..',
     new Date(),
     'devicon-android-plain'
 );

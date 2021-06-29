@@ -4,7 +4,7 @@
       <i *ngIf="question.icon !== 'none'" mat-list-icon class="{{ question.icon }}"></i>
       <h3 mat-line>{{ question.title }}</h3>
       <p mat-line>
-          <small>{{ question.answers.length }} respuestas - {{ question.createdAt | amLocale: 'es' | amTimeAgo }}</small>
+          <small>{{ question.answers.length }} answer(s) - {{ question.createdAt | amTimeAgo }}</small>
       </p>
     </mat-list-item>
   </mat-list>
