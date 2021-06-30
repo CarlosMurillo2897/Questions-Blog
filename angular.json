@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "platzi-overflow": {
+    "Questions-Blog": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/platzi-overflow",
+            "outputPath": "dist/Questions-Blog",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "platzi-overflow:build:production"
+              "browserTarget": "Questions-Blog:build:production"
             },
             "development": {
-              "browserTarget": "platzi-overflow:build:development"
+              "browserTarget": "Questions-Blog:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "platzi-overflow:build"
+            "browserTarget": "Questions-Blog:build"
           }
         },
         "test": {
@@ -104,5 +104,5 @@
       }
     }
   },
-  "defaultProject": "platzi-overflow"
+  "defaultProject": "Questions-Blog"
 }
