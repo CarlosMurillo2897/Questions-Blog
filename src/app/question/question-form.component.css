@@ -1,0 +1,18 @@
+i {
+    font-size: 48px;
+  }
+
+  small {
+    display: block;
+  }
+  
+  .add-question {
+    position: fixed;
+    bottom: 90px;
+    right: 30px; 
+  }
+
+  span {
+      margin-top: -7px;
+      font-size: 38px;
+  }

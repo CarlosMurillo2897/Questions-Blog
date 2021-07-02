@@ -4,29 +4,25 @@ import { Question } from './question.model';
 import icons  from './icons';
 import { QuestionService } from './question.service';
 import { Router } from '@angular/router';
+import SweetScroll from 'sweet-scroll';
 
 @Component({
   selector: 'app-question-form',
   templateUrl: './question-form.component.html',
-  styles: [`
-    i {
-      font-size: 48px;
-    }
-
-    small {
-      display: block;
-    }
-  `],
+  styleUrls: [ './question-form.component.css' ],
   providers: [ QuestionService, ],
 })
 
 export class QuestionFormComponent {
   icons: Array<any> = icons;
+  sweetScroll: SweetScroll;
 
   constructor(
       private questionService: QuestionService,
       private router: Router
-    ) { }
+    ) {
+      this.sweetScroll = new SweetScroll();
+    }
 
   getIconVersion(icon: any) {
     let version = 'plain';
@@ -56,4 +52,6 @@ export class QuestionFormComponent {
         );
     form.resetForm();
   }
+
+  onClick() { this.sweetScroll.to('#toolbar'); }
 }
