@@ -1,19 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Question } from './question.model';
-
-const q = new Question(
-    'How can I reuse a Component on Android?',
-    'I\'m a begginer on Android development.. So..',
-    new Date(),
-    'devicon-android-plain'
-);
+import { QuestionService } from './question.service';
 
 @Component({
     selector: 'app-question-list',
     templateUrl: './question-list.component.html',
     styleUrls: ['./question-list.component.css'],
+    providers: [ QuestionService ],
 })
 
-export class QuestionListComponent {
-    questions: Question[] = new Array(10).fill(q);
+export class QuestionListComponent implements OnInit {
+    constructor(private questionService: QuestionService) { }
+
+    questions!: Question[];
+    loading = true; 
+
+    ngOnInit() {
+        this.questionService.getQuestions().subscribe(res => {
+            this.questions = res;
+            this.loading = false;
+        });
+    }
 }
