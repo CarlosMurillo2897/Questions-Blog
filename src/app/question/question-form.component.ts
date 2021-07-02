@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { Question } from './question.model';
 import icons  from './icons';
 import { QuestionService } from './question.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-question-form',
@@ -22,7 +23,10 @@ import { QuestionService } from './question.service';
 export class QuestionFormComponent {
   icons: Array<any> = icons;
 
-  constructor(private questionService: QuestionService) { }
+  constructor(
+      private questionService: QuestionService,
+      private router: Router
+    ) { }
 
   getIconVersion(icon: any) {
     let version = 'plain';
@@ -47,7 +51,7 @@ export class QuestionFormComponent {
     this.questionService
       .addQuestion(q)
         .subscribe(
-          ({ _id }) => console.log(_id),
+          ({ _id }) => this.router.navigate(['/questions', _id]),
           error => console.log('Error founded: ', error)
         );
     form.resetForm();

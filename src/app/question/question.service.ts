@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from "src/environments/environment";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
+import { Answer } from "../answers/answer.model";
 
 @Injectable()
 export class QuestionService {
@@ -51,6 +52,31 @@ export class QuestionService {
                 .post(this.questionsUrl, body, { headers }).pipe(
                     map((res) => { 
                         return res as Question
+                    }), 
+                    catchError(
+                        (error: Error) => {
+                            error.message = this.handleError(error);
+                            return throwError(error);
+                        }
+                    )
+                );
+    }
+    
+    addAnswers(answer: Answer) {
+        const a = {
+            description: answer.description,
+            question: {
+                _id: answer.question._id
+            }
+        };
+        const body = JSON.stringify(a);
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const url = this.questionsUrl + `/${answer.question._id}/answers`;
+
+        return this.HttpClient
+                .post(url, body, { headers }).pipe(
+                    map((res) => { 
+                        return res as Answer
                     }), 
                     catchError(
                         (error: Error) => {

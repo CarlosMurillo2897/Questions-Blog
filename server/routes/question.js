@@ -11,15 +11,27 @@ const question = {
     createdAt: new Date(),
     icon: 'devicon-android-plain',
     answers: [],
-    user: {
-        firstName: 'Carlos',
-        lastName: 'Murillo',
-        email: 'email@email.com',
-        password: '123456'
-    }
 };
 
+const currentUser = {
+    firstName: 'Carlos',
+    lastName: 'Murillo',
+    email: 'email@email.com',
+    password: '123456'
+}
+
 const questions = new Array(10).fill(question);
+
+function questionMiddleware(req, _, next) {
+    const { id } = req.params;
+    req.question = questions.find(({ _id }) => _id === +id);
+    next();
+}
+
+function userMiddleware(req, _, next) {
+    req.user = currentUser
+    next();
+}
 
 // GET /api/questions
 app.get('/', (_, res) => { 
@@ -30,30 +42,34 @@ app.get('/', (_, res) => {
 });
 
 // GET /api/questions/:id
-app.get('/:id', (req, res) => {
-    const { id } = req.params;
-    const q = questions.find(({ _id }) => _id === +id);
-    
-    debug('GET /api/questions/:' + id);
-    res.status(200).json(q);
+app.get('/:id', questionMiddleware, (req, res) => {
+    debug('GET /api/questions/:id');
+    res.status(200).json(req.question);
 });
 
-// POST /api.questions/
-app.post('/', (req, res) => {
+// POST /api/questions/
+app.post('/', userMiddleware, (req, res) => {
     debug('POST /api/questions');
-        const question = req.body;
-        question.answers = [];
-        question._id = +new Date();
-        question.createdAt = new Date();
-        question.user = {
-            email: 'email@email.com',
-            password: 'pwd12345',
-            firstName: 'Charlie',
-            lastName: 'Sheen',
-        };
-        
-        questions.push(question);
-        res.status(200).json(question);
+    const question = req.body;
+    question.answers = [];
+    question._id = +new Date();
+    question.createdAt = new Date();
+    question.user = req.user;
+    
+    questions.push(question);
+    res.status(201).json(question);
+});
+
+// POST /api/questions/:id/answers
+app.post('/:id/answers', questionMiddleware, userMiddleware, (req, res) => {
+    debug('POST /api/questions/:id/answers');
+    const q = req.question;
+    const answer = req.body;
+    answer.createdAt = new Date();
+    answer.user = req.user;
+    
+    q.answers.push(answer);
+    res.status(201).json(answer);
 });
 
 export default app;
