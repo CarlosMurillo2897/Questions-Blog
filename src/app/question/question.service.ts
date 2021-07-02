@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
 import { Question } from "./question.model";
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from "src/environments/environment";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Observable, throwError } from "rxjs";
+import { catchError, map } from "rxjs/operators";
 
 @Injectable()
 export class QuestionService {
@@ -17,7 +17,13 @@ export class QuestionService {
             .pipe(
                 map( res => {
                     return res as Question[]
-                })
+                }), 
+                catchError(
+                    (error: Error) => {
+                        error.message = this.handleError(error);
+                        return throwError(error);
+                    }
+                )
             );
     }
     
@@ -27,15 +33,37 @@ export class QuestionService {
             .pipe(
                 map( res => {
                     return res as Question
-                })
+                }), 
+                catchError(
+                    (error: Error) => {
+                        error.message = this.handleError(error);
+                        return throwError(error);
+                    }
+                )
             );
     }
 
+    addQuestion(question: Question) {
+        const body = JSON.stringify(question);
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+
+        return this.HttpClient
+                .post(this.questionsUrl, body, { headers }).pipe(
+                    map((res) => { 
+                        return res as Question
+                    }), 
+                    catchError(
+                        (error: Error) => {
+                            error.message = this.handleError(error);
+                            return throwError(error);
+                        }
+                    )
+                );
+    }
+
     handleError(error: any) {
-        const errMsg = error.message ? error.message : 
-            error.status ? `${error.status} - ${error.statusText}` :
-                'Server error';
-        console.log(errMsg);
-        
+        return error.message ? error.message : 
+                    error.status ? `${error.status} - ${error.statusText}` :
+                        'Server error';
     }
 }

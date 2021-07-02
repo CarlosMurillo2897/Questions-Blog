@@ -16,9 +16,13 @@ export class QuestionListComponent implements OnInit {
     loading = true; 
 
     ngOnInit() {
-        this.questionService.getQuestions().subscribe(res => {
-            this.questions = res;
-            this.loading = false;
-        });
+        this.questionService
+                .getQuestions()
+                    .subscribe(res => {
+                        this.questions = res;
+                        this.loading = false;
+                    },
+                    error => console.log(error)
+        );
     }
 }

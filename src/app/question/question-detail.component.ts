@@ -28,7 +28,8 @@ export class QuestionDetailComponent implements OnInit, OnDestroy {
                     question => {
                         this.question = question;
                         this.loading = false;
-                    }
+                    },
+                    error => console.log(error)
                 );
             });
     }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Question } from './question.model';
 import icons  from './icons';
+import { QuestionService } from './question.service';
 
 @Component({
   selector: 'app-question-form',
@@ -15,10 +16,13 @@ import icons  from './icons';
       display: block;
     }
   `],
+  providers: [ QuestionService, ],
 })
 
 export class QuestionFormComponent {
   icons: Array<any> = icons;
+
+  constructor(private questionService: QuestionService) { }
 
   getIconVersion(icon: any) {
     let version = 'plain';
@@ -39,8 +43,13 @@ export class QuestionFormComponent {
       new Date(),
       icon,
     );
-    form.reset();
-    console.log(q);
     
+    this.questionService
+      .addQuestion(q)
+        .subscribe(
+          ({ _id }) => console.log(_id),
+          error => console.log('Error founded: ', error)
+        );
+    form.resetForm();
   }
 }

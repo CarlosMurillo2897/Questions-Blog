@@ -1,15 +1,15 @@
 import express from 'express';
 import { question } from './routes';
-import Debug from 'debug';
 
 const app = express();
-const debug = new Debug("Questions-Blog:app.js");
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 if(process.env.NODE_ENV.trim() === 'development') {
-    debug('Added Headers.')
     app.use((_, res, next) => {
         res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Request-With', 'Content-Type', 'Accept');
+        res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Request-With, Content-Type, Accept');
         res.setHeader('Access-Control-Allow-Methods', 'POST, GET, PATCH, DELETE, OPTIONS');
         next();
     });

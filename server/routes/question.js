@@ -1,6 +1,8 @@
 import express from 'express';
+import Debug from 'debug';
 
 const app = express.Router();
+const debug = new Debug("Questions-Blog:Questions");
 
 const question = {
     _id: 1,
@@ -19,18 +21,39 @@ const question = {
 
 const questions = new Array(10).fill(question);
 
-// /api/questions
+// GET /api/questions
 app.get('/', (_, res) => { 
+    debug('GET /api/questions');
     setTimeout(() => {
         res.status(200).json(questions)
     }, 400);
 });
 
-// /api/questions/:id
-app.get('/:id', (_, res) => {
-    setTimeout(() => {
-        res.status(200).json(question)    
-    }, 400);
+// GET /api/questions/:id
+app.get('/:id', (req, res) => {
+    const { id } = req.params;
+    const q = questions.find(({ _id }) => _id === +id);
+    
+    debug('GET /api/questions/:' + id);
+    res.status(200).json(q);
+});
+
+// POST /api.questions/
+app.post('/', (req, res) => {
+    debug('POST /api/questions');
+        const question = req.body;
+        question.answers = [];
+        question._id = +new Date();
+        question.createdAt = new Date();
+        question.user = {
+            email: 'email@email.com',
+            password: 'pwd12345',
+            firstName: 'Charlie',
+            lastName: 'Sheen',
+        };
+        
+        questions.push(question);
+        res.status(200).json(question);
 });
 
 export default app;
