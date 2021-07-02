@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatRadioModule } from '@angular/material/radio';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const modules = [
     MatButtonModule,
@@ -18,6 +19,7 @@ const modules = [
     MatListModule,
     MatGridListModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
 ];
 
 @NgModule({

@@ -20,9 +20,17 @@ const question = {
 const questions = new Array(10).fill(question);
 
 // /api/questions
-app.get('/', (_, res) => res.status(200).json(questions) );
+app.get('/', (_, res) => { 
+    setTimeout(() => {
+        res.status(200).json(questions)
+    }, 400);
+});
 
 // /api/questions/:id
-app.get('/:id', (_, res) => res.status(200).json(question) );
+app.get('/:id', (_, res) => {
+    setTimeout(() => {
+        res.status(200).json(question)    
+    }, 400);
+});
 
 export default app;
