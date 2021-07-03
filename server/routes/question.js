@@ -13,13 +13,6 @@ const question = {
     answers: [],
 };
 
-const currentUser = {
-    firstName: 'Carlos',
-    lastName: 'Murillo',
-    email: 'email@email.com',
-    password: '123456'
-}
-
 const questions = new Array(10).fill(question);
 
 function questionMiddleware(req, _, next) {
