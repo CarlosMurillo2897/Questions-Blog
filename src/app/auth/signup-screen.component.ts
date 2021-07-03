@@ -33,7 +33,7 @@ export class SignupScreenComponent implements OnInit {
       const user = new User(email, password, nombre, apellido);
       this.authService.signUp(user)
         .subscribe(
-          (_) => this.authService.login,
+          () => console.log('Signed Up'),
           error => console.log(error)
         )
     }

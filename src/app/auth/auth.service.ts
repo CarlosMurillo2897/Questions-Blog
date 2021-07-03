@@ -51,20 +51,27 @@ export class AuthService {
                         catchError(
                             error => throwError(error)
                         )
-                    )
+                    );
     }
 
-    login = (params: any) => {
-        const { token, email, firstName, lastName, userId } = params;
-        this.currentUser = new User(email, '', firstName, lastName, userId);
+    login(params: any) {
+        const { token, userId, firstName, lastName, email } = params;
         localStorage.setItem('token', token);
         localStorage.setItem('user', JSON.stringify({ userId, firstName, lastName, email }));
         this.router.navigateByUrl('/');
     }
 
-    isLoggedIn = () => localStorage.getItem('token') !== null;
+    isLoggedIn() {
+        let logged = localStorage.getItem('token') !== null;
+        
+        if(logged) {
+            const { email, firstName, lastName, userId } = JSON.parse(localStorage.getItem('user')!);
+            this.currentUser = new User(email, '', firstName, lastName, userId);
+        }
+        return logged;
+    }
 
-    logout = () => {
+    logout() {
         localStorage.clear();
         this.currentUser = null;
         this.router.navigateByUrl('/');
