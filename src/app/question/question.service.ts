@@ -44,12 +44,19 @@ export class QuestionService {
             );
     }
 
+    getToken() {
+        const token = localStorage.getItem('token');
+        return `?token=${token}`;
+    }
+
     addQuestion(question: Question) {
         const body = JSON.stringify(question);
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+        const token = localStorage.getItem('token');
+        const url = this.questionsUrl + this.getToken();
 
         return this.HttpClient
-                .post(this.questionsUrl, body, { headers }).pipe(
+                .post(url, body, { headers }).pipe(
                     map((res) => { 
                         return res as Question
                     }), 
@@ -71,7 +78,7 @@ export class QuestionService {
         };
         const body = JSON.stringify(a);
         const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-        const url = this.questionsUrl + `/${answer.question._id}/answers`;
+        const url = this.questionsUrl + `/${answer.question._id}/answers` + this.getToken();
 
         return this.HttpClient
                 .post(url, body, { headers }).pipe(

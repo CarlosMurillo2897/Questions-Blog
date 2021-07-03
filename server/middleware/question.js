@@ -7,7 +7,7 @@ const question = {
     answers: [],
 };
 
-const questions = new Array(10).fill(question);
+export const questions = new Array(10).fill(question);
 
 export const questionMiddleware = (req, _, next) => {
     const { id } = req.params;

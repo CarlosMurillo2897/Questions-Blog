@@ -1,6 +1,6 @@
 import express from 'express';
 import Debug from 'debug';
-import { required, questionMiddleware, questionsMiddleware } from '../middleware/index';
+import { required, questionMiddleware, questionsMiddleware, questions } from '../middleware/index';
 
 const app = express.Router();
 const debug = new Debug("Questions-Blog:Questions");
@@ -20,7 +20,7 @@ app.get('/:id', questionMiddleware, (req, res) => {
 });
 
 // POST /api/questions/
-app.post('/', required, (req, res) => {
+app.post('/', required, questionsMiddleware, (req, res) => {
     debug('POST /api/questions');
     const question = req.body;
     question.answers = [];
