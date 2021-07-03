@@ -9,7 +9,7 @@ import { Router } from "@angular/router";
 @Injectable()
 export class AuthService {
     usersUrl: string;
-    currentUser!: User;
+    currentUser!: User | null;
 
     constructor(
             private httpClient: HttpClient,
@@ -47,6 +47,11 @@ export class AuthService {
 
     isLoggedIn = () => localStorage.getItem('token') !== null;
 
+    logout = () => {
+        localStorage.clear();
+        this.currentUser = null;
+        this.router.navigateByUrl('/');
+    };
 
 
 };
