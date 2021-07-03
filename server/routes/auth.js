@@ -1,24 +1,11 @@
 import express from 'express';
 import Debug from 'debug';
 import jwt from 'jsonwebtoken';
+import { secret } from '../config';
+import { findUserByEmail, users } from '../middleware';
 
 const app = express.Router();
 const debug = new Debug('Questions-Blog:Auth');
-const secret = 'miclavesecreta';
-
-const users = [
-    {
-        _id: 123,
-        firstName: 'Carlos',
-        lastName: 'Murillo',
-        email: 'email@email.com',
-        password: '123456'
-    },
-];
-
-const findUserByEmail = e => users.find(
-    ({ email }) => email === e
-);
 
 function comparePassword (providedPassword, userPassword) {
     return providedPassword === userPassword;

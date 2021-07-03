@@ -1,44 +1,15 @@
 import express from 'express';
 import Debug from 'debug';
+import { required, questionMiddleware, questionsMiddleware } from '../middleware/index';
 
 const app = express.Router();
 const debug = new Debug("Questions-Blog:Questions");
 
-const question = {
-    _id: 1,
-    title: 'How to re-use a Component on Android?',
-    description: 'Look, this is my question..',
-    createdAt: new Date(),
-    icon: 'devicon-android-plain',
-    answers: [],
-};
-
-const currentUser = {
-    _id: 123,
-    firstName: 'Carlos',
-    lastName: 'Murillo',
-    email: 'email@email.com',
-    password: '123456'
-};
-
-const questions = new Array(10).fill(question);
-
-function questionMiddleware(req, _, next) {
-    const { id } = req.params;
-    req.question = questions.find(({ _id }) => _id === +id);
-    next();
-}
-
-function userMiddleware(req, _, next) {
-    req.user = currentUser
-    next();
-}
-
 // GET /api/questions
-app.get('/', (_, res) => { 
+app.get('/', questionsMiddleware, (req, res) => { 
     debug('GET /api/questions');
     setTimeout(() => {
-        res.status(200).json(questions)
+        res.status(200).json(req.questions)
     }, 400);
 });
 
@@ -49,7 +20,7 @@ app.get('/:id', questionMiddleware, (req, res) => {
 });
 
 // POST /api/questions/
-app.post('/', userMiddleware, (req, res) => {
+app.post('/', required, (req, res) => {
     debug('POST /api/questions');
     const question = req.body;
     question.answers = [];
@@ -62,7 +33,7 @@ app.post('/', userMiddleware, (req, res) => {
 });
 
 // POST /api/questions/:id/answers
-app.post('/:id/answers', questionMiddleware, userMiddleware, (req, res) => {
+app.post('/:id/answers', required, questionMiddleware, (req, res) => {
     debug('POST /api/questions/:id/answers');
     const q = req.question;
     const answer = req.body;

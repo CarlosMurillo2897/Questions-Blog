@@ -16,10 +16,12 @@ export class AuthService {
             private router: Router,
         ) {
         this.usersUrl = environment.apiUrl + 'auth';
+        
         if(this.isLoggedIn()) {
             const { email, firstName, lastName, userId } = JSON.parse(localStorage.getItem('user')!);
             this.currentUser = new User(email, '', firstName, lastName, userId);
         }
+        
     }
 
     signUp(user: User) {
@@ -52,7 +54,7 @@ export class AuthService {
                     )
     }
 
-    login = (params: any) => { // ({ token, userId, firstName, lastName, email} : {token: any , userId: string, firstName: string, lastName: string, email: string}) => {
+    login = (params: any) => {
         const { token, email, firstName, lastName, userId } = params;
         this.currentUser = new User(email, '', firstName, lastName, userId);
         localStorage.setItem('token', token);

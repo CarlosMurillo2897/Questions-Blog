@@ -33,7 +33,7 @@ export class SignupScreenComponent implements OnInit {
       const user = new User(email, password, nombre, apellido);
       this.authService.signUp(user)
         .subscribe(
-          (_) => console.log('redirecting..'),
+          (_) => this.authService.login,
           error => console.log(error)
         )
     }
