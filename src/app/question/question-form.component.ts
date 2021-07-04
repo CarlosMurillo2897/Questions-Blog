@@ -56,7 +56,7 @@ export class QuestionFormComponent implements OnInit {
       .addQuestion(q)
         .subscribe(
           ({ _id }) => this.router.navigate(['/questions', _id]),
-          error => console.log('Error founded: ', error)
+          this.authService.handleError
         );
     form.resetForm();
   }

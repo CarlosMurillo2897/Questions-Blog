@@ -44,7 +44,7 @@ export class AnswerFormComponent {
             this.question.answers.unshift(a);
             this.sweetScroll.to('#title');
           },
-          error => console.log(error)
+          this.authService.handleError
         );
     
         form.reset();

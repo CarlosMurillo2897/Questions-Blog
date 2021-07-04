@@ -33,7 +33,7 @@ export class SigninScreenComponent implements OnInit {
         .signIn(user)
         .subscribe(
           () => console.log('redirecting..'),
-          error => console.log(error)
+          this.authService.handleError
         );
     }
     

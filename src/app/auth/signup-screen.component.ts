@@ -34,7 +34,7 @@ export class SignupScreenComponent implements OnInit {
       this.authService.signUp(user)
         .subscribe(
           () => console.log('Signed Up'),
-          error => console.log(error)
+          this.authService.handleError
         )
     }
     

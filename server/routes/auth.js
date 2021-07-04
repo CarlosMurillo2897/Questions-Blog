@@ -16,8 +16,9 @@ app.post('/signin', (req, res) => {
     const user = findUserByEmail(email);
 
     if(!user) { 
-        debug(`User with email ${email} not found.`)
-        return handleLoginFailed(res);
+        const errorMsg = `User with email ${email} not found.`
+        debug(errorMsg);
+        return handleLoginFailed(res, errorMsg);
     }
     
     if(!comparePassword(password, user.password)) {
