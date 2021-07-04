@@ -1,26 +1,33 @@
 import express from 'express';
 import Debug from 'debug';
-import { required, questionMiddleware, questionsMiddleware, questions } from '../middleware/index';
+import { required } from '../middleware/index';
+import { question } from '../db-api';
 
 const app = express.Router();
 const debug = new Debug("Questions-Blog:Questions");
 
 // GET /api/questions
-app.get('/', questionsMiddleware, (req, res) => { 
-    debug('GET /api/questions');
-    setTimeout(() => {
-        res.status(200).json(req.questions)
-    }, 400);
+app.get('/', async (req, res) => { 
+    try {
+            debug('GET /api/questions');
+            const questions = await question.findAll();
+            res.status(200).json(questions);
+        } catch(err) {
+            res.status(500).json({
+                message: 'An error occurred.',
+                error
+            });
+        }
 });
 
 // GET /api/questions/:id
-app.get('/:id', questionMiddleware, (req, res) => {
+app.get('/:id', (req, res) => {
     debug('GET /api/questions/:id');
     res.status(200).json(req.question);
 });
 
 // POST /api/questions/
-app.post('/', required, questionsMiddleware, (req, res) => {
+app.post('/', required, (req, res) => {
     debug('POST /api/questions');
     const question = req.body;
     question.answers = [];
@@ -33,7 +40,7 @@ app.post('/', required, questionsMiddleware, (req, res) => {
 });
 
 // POST /api/questions/:id/answers
-app.post('/:id/answers', required, questionMiddleware, (req, res) => {
+app.post('/:id/answers', required, (req, res) => {
     debug('POST /api/questions/:id/answers');
     const q = req.question;
     const answer = req.body;

@@ -6,10 +6,18 @@ import { mongoUrl } from './config';
 const PORT = 3000;
 const debug = new Debug('Questions-Blog:root');
 
-// mongoose.connect(mongoUrl, {
-//         useNewUrlParser: true
-// });
+// mongoose.Promise = global.Promise;
 
-app.listen(PORT, () => {
-        debug(`Server running at PORT ${PORT}.`);
-});
+async function start() {
+        await mongoose.connect(mongoUrl, { 
+                        useNewUrlParser: true, 
+                        useUnifiedTopology: true,
+                        useCreateIndex: true,
+                });
+
+        app.listen(PORT, () => {
+                debug(`Server running at PORT ${PORT}.`);
+        });
+}
+
+start();
