@@ -2,28 +2,31 @@ import express from 'express';
 import Debug from 'debug';
 import { required } from '../middleware/index';
 import { question } from '../db-api';
+import handleError from '../utils';
 
 const app = express.Router();
 const debug = new Debug("Questions-Blog:Questions");
 
 // GET /api/questions
-app.get('/', async (req, res) => { 
+app.get('/', async (_, res) => { 
     try {
             debug('GET /api/questions');
             const questions = await question.findAll();
             res.status(200).json(questions);
         } catch(err) {
-            res.status(500).json({
-                message: 'An error occurred.',
-                error
-            });
+            handleError(error, res);
         }
-});
-
+    });
+    
 // GET /api/questions/:id
-app.get('/:id', (req, res) => {
-    debug('GET /api/questions/:id');
-    res.status(200).json(req.question);
+app.get('/:id', async (req, res) => {
+    try {
+        debug('GET /api/questions/:id');
+        const q = await question.findById(req.params.id);
+        res.status(200).json(q);
+    } catch (error) {
+        handleError(error, res);
+    }
 });
 
 // POST /api/questions/

@@ -2,7 +2,10 @@ import express from 'express';
 import Debug from 'debug';
 import jwt from 'jsonwebtoken';
 import { secret } from '../config';
-import { findUserByEmail, users } from '../middleware';
+import { User } from '../models';
+import {
+    hashSync as hash
+} from 'bcryptjs';
 
 const app = express.Router();
 const debug = new Debug('Questions-Blog:Auth');
@@ -11,9 +14,9 @@ function comparePassword (providedPassword, userPassword) {
     return providedPassword === userPassword;
 }
 
-app.post('/signin', (req, res) => {
+app.post('/signin', async (req, res) => {
     const { email, password } = req.body;
-    const user = findUserByEmail(email);
+    const user = await User.findOne({ email });
 
     if(!user) { 
         const errorMsg = `User with email ${email} not found.`
@@ -37,18 +40,19 @@ app.post('/signin', (req, res) => {
     });
 });
 
-app.post('/signup', (req, res) => {
+app.post('/signup', async (req, res) => {
     const { firstName, lastName, email, password } = req.body;
-    const user = {
-        _id: +new Date(),
+    const u = new User({
         firstName,
         lastName,
         email,
-        password,
-    };
-    debug(`Creating new user: ${user}. `);
-    users.push(user);
+        password: hash(password, 10),
+    });
+
+    debug(`Creating new user: ${u}. `);
+    const user = await u.save();
     const token = createToken(user);
+    
     res.status(201).json({
         message: 'User saved',
         token,
