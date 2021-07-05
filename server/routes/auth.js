@@ -4,15 +4,12 @@ import jwt from 'jsonwebtoken';
 import { secret } from '../config';
 import { User } from '../models';
 import {
-    hashSync as hash
+    hashSync as hash,
+    compareSync as comparePassword,
 } from 'bcryptjs';
 
 const app = express.Router();
 const debug = new Debug('Questions-Blog:Auth');
-
-function comparePassword (providedPassword, userPassword) {
-    return providedPassword === userPassword;
-}
 
 app.post('/signin', async (req, res) => {
     const { email, password } = req.body;
