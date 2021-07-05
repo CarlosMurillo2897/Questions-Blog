@@ -7,7 +7,7 @@
         <h2>{{ question.title }}</h2>
       </mat-card-title>
       <mat-card-subtitle>
-        <small>Sacha Lifszyc - {{ question.createdAt | amTimeAgo }}</small>
+        <small>{{ question.user?.firstName }} {{ question.user?.lastName }} - {{ question.createdAt | amTimeAgo }}</small>
       </mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>

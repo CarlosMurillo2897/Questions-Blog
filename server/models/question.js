@@ -8,7 +8,7 @@ const QuestionSchema = new Schema({
     icon: { type: String, required: true },
     createdAt: { type: Date, default: Date.now, required: true },
     user: { type: ObjectId, ref: 'User', required: true },
-    answers: [{ type: ObjectId, ref: 'Answer' }],
+    answers: [{ type: ObjectId, ref: 'Answer', default: [] }],
 });
 
 export default mongoose.model('Question', QuestionSchema);

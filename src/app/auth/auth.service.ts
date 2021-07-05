@@ -84,12 +84,9 @@ export class AuthService {
     }
 
     public handleError = (error: any) => {
-        const { name } = error;
+        const { name } = error.error.error;
         const message = error.error.error;
-        console.log(error);
-        console.log(error.error);
-        console.log(error.error.error);
-        
+            
         if(name === 'TokenExpiredError') {
             this.showError('Session has expired.');
         } else if (name === 'JsonWebTokenError') {
