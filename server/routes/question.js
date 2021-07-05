@@ -30,6 +30,19 @@ app.get('/:id', questionMiddleware, async (req, res) => {
     }
 });
 
+// GET /api/questions/user/:id
+app.get('/user/:id', async (req, res) => {
+    try {
+        debug('GET /api/questions/user/:id');
+        const { id } = req.params;
+        const { sort } = req.query;
+        const questions = await question.findQuestionsByUser(id, sort);
+        res.status(200).json(questions);
+    } catch (error) {
+        handleError(error, res);
+    }
+});
+
 // POST /api/questions/
 app.post('/', required, async (req, res) => {
     debug('POST /api/questions');

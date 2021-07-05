@@ -6,19 +6,26 @@
           </ng-template>
         <app-question-list sort='-createdAt'></app-question-list>
     </mat-tab>
-    <mat-tab label="Alphabetic">
+    <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">sort_by_alpha</mat-icon>
-            Alphabetic
+            Alphabet
           </ng-template>
         <app-question-list sort='title'></app-question-list>
     </mat-tab>
-    <mat-tab label="Trend">
+    <mat-tab>
         <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">sort</mat-icon>
             Trend
           </ng-template>
         <app-question-list sort='-answers_length'></app-question-list>
+    </mat-tab>
+    <mat-tab *ngIf="isLoggedIn()">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">badge</mat-icon>
+            Own
+          </ng-template>
+        <app-question-list sort='-createdAt' searchByUser='true'></app-question-list>
     </mat-tab>
 </mat-tab-group>      
 <button mat-fab class="add-question" color="accent" [routerLink]="['questions/new']">

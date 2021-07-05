@@ -43,6 +43,22 @@ export class QuestionService {
                 )
             );
     }
+    
+    getQuestionsByUser(id: string, sort: string): Observable<Question[]> {
+        const url = `${this.questionsUrl}/user/${id}?sort=${sort}`;
+        return this.HttpClient.get(url)
+            .pipe(
+                map( res => {
+                    return res as Question[]
+                }), 
+                catchError(
+                    (error: Error) => {
+                        error.message = this.handleError(error);
+                        return throwError(error);
+                    }
+                )
+            );
+    }
 
     getToken() {
         const token = localStorage.getItem('token');

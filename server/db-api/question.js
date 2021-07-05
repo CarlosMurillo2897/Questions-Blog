@@ -38,6 +38,20 @@ export default {
                 }
             });
     },
+
+    findQuestionsByUser: (_id, sort) => {
+        debug(`Finding Question from user ${_id}, sorted by ${sort}.`);
+        return Question.find({
+            user: _id
+        }).populate({
+            path: 'answers',
+            populate: {
+                path: 'user',
+                model: 'User',
+                select: '-password'
+            }
+        }).sort(sort);
+    },
     
     create: (q) => {
         debug(`Creating new Question ${q}`);
@@ -52,6 +66,6 @@ export default {
         q.answers.push(answer);
         await q.save();
         return savedAnswer;
-    }
+    },
     
 };

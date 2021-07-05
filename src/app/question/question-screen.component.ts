@@ -1,4 +1,5 @@
-import { Component } from "@angular/core";
+import { Component  } from "@angular/core";
+import { AuthService } from "../auth/auth.service";
 
 @Component({
     selector: 'app-question-screen',
@@ -14,5 +15,10 @@ import { Component } from "@angular/core";
 })
 
 export class QuestionScreenComponent {
-
+    
+    constructor(private authService: AuthService) { }
+    
+    isLoggedIn() {
+        return this.authService.isLoggedIn();
+    }
 }
