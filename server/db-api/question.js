@@ -6,8 +6,20 @@ const debug = new Debug('Questions-Blog:db-api:question');
 export default {
     findAll: (sort = '-createdAt') => {
         debug('Finding all Questions.');
-        console.log(sort);
-        return Question.find().populate('answers').sort(sort);
+         return Question.aggregate([
+            {
+              '$project': {
+                'title': 1, 
+                'description': 1, 
+                'icon': 1,
+                'answers': 1,
+                'createdAt': 1,
+                'answers_length': {
+                  '$size': '$answers'
+                }
+              }
+            }
+          ]).sort(sort);
     },
     
     findById: (_id) => {

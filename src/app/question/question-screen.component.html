@@ -1,12 +1,24 @@
 <mat-tab-group>
-    <mat-tab label="Recent">
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">schedule</mat-icon>
+            Recent
+          </ng-template>
         <app-question-list sort='-createdAt'></app-question-list>
     </mat-tab>
     <mat-tab label="Alphabetic">
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">sort_by_alpha</mat-icon>
+            Alphabetic
+          </ng-template>
         <app-question-list sort='title'></app-question-list>
     </mat-tab>
     <mat-tab label="Trend">
-        <app-question-list sort='-answers.length'></app-question-list>
+        <ng-template mat-tab-label>
+            <mat-icon class="example-tab-icon">sort</mat-icon>
+            Trend
+          </ng-template>
+        <app-question-list sort='-answers_length'></app-question-list>
     </mat-tab>
 </mat-tab-group>      
 <button mat-fab class="add-question" color="accent" [routerLink]="['questions/new']">
