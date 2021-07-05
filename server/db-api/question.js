@@ -4,9 +4,10 @@ import { Answer, Question } from '../models';
 const debug = new Debug('Questions-Blog:db-api:question');
 
 export default {
-    findAll: () => {
+    findAll: (sort = '-createdAt') => {
         debug('Finding all Questions.');
-        return Question.find().populate('answers');
+        console.log(sort);
+        return Question.find().populate('answers').sort(sort);
     },
     
     findById: (_id) => {

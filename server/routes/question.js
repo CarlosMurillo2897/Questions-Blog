@@ -9,10 +9,11 @@ const app = express.Router();
 const debug = new Debug("Questions-Blog:Questions");
 
 // GET /api/questions
-app.get('/', async (_, res) => { 
+app.get('/', async (req, res) => { 
     try {
         debug('GET /api/questions');
-        const questions = await question.findAll();
+        const { sort } = req.query;
+        const questions = await question.findAll(sort);
         res.status(200).json(questions);
     } catch(err) {
         handleError(error, res);

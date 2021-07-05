@@ -13,8 +13,8 @@ export class QuestionService {
         this.questionsUrl = environment.apiUrl + 'questions';
     }
 
-    getQuestions(): Observable<Question[]> {
-        return this.HttpClient.get(this.questionsUrl)
+    getQuestions(sort = '-createdAt'): Observable<Question[]> {
+        return this.HttpClient.get(`${this.questionsUrl}?sort=${sort}`)
             .pipe(
                 map( res => {
                     return res as Question[]
