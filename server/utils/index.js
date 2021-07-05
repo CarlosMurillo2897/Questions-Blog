@@ -4,3 +4,9 @@ export const handleError = (err, res) => {
         error
     });
 };
+
+export const handleLoginFailed = (res, message) => 
+    res.status(401).json({
+        message: 'Login failed.',
+        error: message || 'Email and Password do not match.',
+});
