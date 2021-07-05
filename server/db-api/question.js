@@ -12,13 +12,16 @@ export default {
     findById: (_id) => {
         debug(`Finding Question with an id ${_id}.`);
         return Question.findOne({ _id })
-            .populate('user')
             .populate({
+                path: 'user',
+                select: '-password'
+            }).populate({
                 path: 'answers',
                 options: { sort: '-createdAt' },
                 populate: {
                     path: 'user',
-                    model: 'User'
+                    model: 'User',
+                    select: '-password'
                 }
             });
     },
