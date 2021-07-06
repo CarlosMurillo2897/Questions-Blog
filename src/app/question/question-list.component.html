@@ -4,12 +4,16 @@
     <mat-list-item *ngFor="let question of questions" [routerLink]="['questions', question._id]">
         <i *ngIf="question.icon === 'none'" mat-list-icon class="material-icons">help</i>
         <i *ngIf="question.icon !== 'none'" mat-list-icon class="{{ question.icon }}"></i>
-        <h3 mat-line>{{ question.title }}</h3>
+        <h3 mat-line class="{{ !question.active ? 'strikethrough' : '' }}">
+            {{ question.title }}
+        </h3>
         <p mat-line>
-          <small>{{ question.answers.length }} answer(s) - {{ question.createdAt | amTimeAgo }}</small>
+          <small>{{ question.answers.length }} - answer(s) - {{ question.createdAt | amTimeAgo }}</small>
         </p>
-      <mat-icon style="color: crimson" *ngIf="userQuestions()">lock</mat-icon>
-      <mat-slide-toggle color="primary" checked="checked" *ngIf="!userQuestions()" (click)="clicked()"></mat-slide-toggle>
+        <mat-icon *ngIf="this.searchByUser !== 'true' && !question.active">
+          lock
+        </mat-icon>
+      <mat-slide-toggle color="primary" checked="{{question.active}}" *ngIf="this.searchByUser === 'true'" (click)="clicked()"></mat-slide-toggle>
     </mat-list-item>
   </mat-list>
 </div>

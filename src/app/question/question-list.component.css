@@ -14,3 +14,11 @@ mat-spinner {
     transform: -moz-translate(-50%, -50%);
     transform: -ms-translate(-50%, -50%);
   }
+  
+mat-icon {
+    color: crimson;
+}
+
+.strikethrough {
+    text-decoration: line-through;
+}

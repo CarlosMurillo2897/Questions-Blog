@@ -2,5 +2,5 @@
     <mat-form-field>
         <textarea matInput placeholder="Description" name="description" ngModel></textarea>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="accent">Answer</button>
+    <button type="submit" mat-raised-button color="accent" disabled="{{!question.active}}">Answer</button>
 </form>

@@ -14,6 +14,7 @@ export default {
                 'icon': 1,
                 'answers': 1,
                 'createdAt': 1,
+                'active': 1,
                 'answers_length': {
                   '$size': '$answers'
                 }

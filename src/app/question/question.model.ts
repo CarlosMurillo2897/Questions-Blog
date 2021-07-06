@@ -9,13 +9,15 @@ export class Question {
     icon?: string;
     answers: Answer[];
     user?: User;
+    active?: Boolean;
 
     constructor(
         title: string,
         description: string,
         createdAt?: Date,
         icon?: string,
-        user?: User
+        active?: Boolean,
+        user?: User,
     ) {
         this._id = '1';
         this.title = title;
@@ -24,5 +26,6 @@ export class Question {
         this.icon = icon;
         this.answers = [];
         this.user = undefined;
+        this.active = true;
     }
 }

@@ -22,7 +22,7 @@ export class QuestionListComponent implements OnInit {
     loading = true;
 
     ngOnInit() {
-        if(this.authService.currentUser && this.userQuestions) {
+        if(this.authService.currentUser && this.searchByUser === 'true') {
             const id = this.authService.currentUser?._id || '';
                 this.questionService
                  .getQuestionsByUser(id, this.sort)
@@ -43,10 +43,6 @@ export class QuestionListComponent implements OnInit {
                 error => console.log(error)
             );
         }
-    }
-
-    userQuestions() {
-        return this.searchByUser !== 'true';
     }
 
     clicked() {
