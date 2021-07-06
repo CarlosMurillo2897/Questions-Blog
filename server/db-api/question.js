@@ -5,7 +5,7 @@ const debug = new Debug('Questions-Blog:db-api:question');
 
 export default {
     findAll: (sort = '-createdAt') => {
-        debug('Finding all Questions.');
+        debug(`Finding all Questions, sorted by ${sort}.`);
          return Question.aggregate([
             {
               '$project': {
@@ -68,8 +68,9 @@ export default {
         await q.save();
         return savedAnswer;
     },
-
+    
     setActiveQuestion: (q) => {
+        debug(`Enable/Disable Question ${q._id}`);
         return Question.findOneAndUpdate(
             { _id: q._id },
             { active: !q.active }

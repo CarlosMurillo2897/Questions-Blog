@@ -6,6 +6,9 @@
       <mat-card-title>
         <h2 class="{{ !question.active ? 'strikethrough' : '' }}">
           {{ question.title }}
+          <mat-icon *ngIf="!question.active">
+            lock
+          </mat-icon>
         </h2>
       </mat-card-title>
       <mat-card-subtitle>
