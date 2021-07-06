@@ -5,6 +5,7 @@ import { environment } from "src/environments/environment";
 import { Observable, throwError } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 import { Answer } from "../answers/answer.model";
+import { identifierModuleUrl } from "@angular/compiler";
 
 @Injectable()
 export class QuestionService {
@@ -98,6 +99,24 @@ export class QuestionService {
 
         return this.HttpClient
                 .post(url, body, { headers }).pipe(
+                    map((res) => { 
+                        return res as Answer
+                    }), 
+                    catchError(
+                        (error: Error) => {
+                            error.message = this.handleError(error);
+                            return throwError(error);
+                        }
+                    )
+                );
+    }
+
+    setActiveQuestion(question: any) {
+        const body = JSON.stringify(question);
+        const headers = new HttpHeaders({ 'Content-Type': 'application/json'  });
+
+        return this.HttpClient
+                .put(this.questionsUrl, body, { headers }).pipe(
                     map((res) => { 
                         return res as Answer
                     }), 

@@ -77,4 +77,15 @@ app.post('/:id/answers', required, questionMiddleware, async (req, res) => {
     }
 });
 
+// PUT /api/questions/
+app.put('/', async (req, res) => {
+    try {
+        debug('PUT /api/questions/');
+        await question.setActiveQuestion(req.body);
+        res.status(200).json(question);
+    } catch (error) {
+        handleError(error, res);
+    }
+});
+
 export default app;

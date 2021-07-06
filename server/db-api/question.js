@@ -68,5 +68,12 @@ export default {
         await q.save();
         return savedAnswer;
     },
+
+    setActiveQuestion: (q) => {
+        return Question.findOneAndUpdate(
+            { _id: q._id },
+            { active: !q.active }
+        );
+    },
     
 };

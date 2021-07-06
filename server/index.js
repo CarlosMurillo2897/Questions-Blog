@@ -11,6 +11,7 @@ async function start() {
                         useNewUrlParser: true, 
                         useUnifiedTopology: true,
                         useCreateIndex: true,
+                        useFindAndModify: false,
                 });
 
         app.listen(PORT, () => {

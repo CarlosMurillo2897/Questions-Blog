@@ -4,7 +4,9 @@
     <mat-card-header>
       <div mat-card-avatar class="{{question.icon}} icon"></div>
       <mat-card-title>
-        <h2>{{ question.title }}</h2>
+        <h2 class="{{ !question.active ? 'strikethrough' : '' }}">
+          {{ question.title }}
+        </h2>
       </mat-card-title>
       <mat-card-subtitle>
         <small>{{ question.user?.firstName }} {{ question.user?.lastName }} - {{ question.createdAt | amTimeAgo }}</small>

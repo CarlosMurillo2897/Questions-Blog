@@ -21,7 +21,7 @@
         <ng-template mat-tab-label>
             <mat-icon class="example-tab-icon">badge</mat-icon>Own
           </ng-template>
-        <app-question-list sort='-createdAt' searchByUser='true'></app-question-list>
+        <app-question-list sort='-createdAt' [searchByUser]="true"></app-question-list>
     </mat-tab>
 </mat-tab-group>      
 <button mat-fab class="add-question" color="accent" [routerLink]="['questions/new']">

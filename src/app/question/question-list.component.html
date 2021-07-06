@@ -10,10 +10,10 @@
         <p mat-line>
           <small>{{ question.answers.length }} - answer(s) - {{ question.createdAt | amTimeAgo }}</small>
         </p>
-        <mat-icon *ngIf="this.searchByUser !== 'true' && !question.active">
+        <mat-icon *ngIf="!searchByUser && !question.active">
           lock
         </mat-icon>
-      <mat-slide-toggle color="primary" checked="{{question.active}}" *ngIf="this.searchByUser === 'true'" (click)="clicked()"></mat-slide-toggle>
+      <mat-slide-toggle color="primary" checked="{{question.active}}" *ngIf="searchByUser" (click)="clicked(question._id, question.active)"></mat-slide-toggle>
     </mat-list-item>
   </mat-list>
 </div>

@@ -16,13 +16,13 @@ export class QuestionListComponent implements OnInit {
             private authService: AuthService
         ) { }
 
-    @Input() searchByUser = 'false';
+    @Input() searchByUser: boolean = false;
     @Input() sort = '-createdAt';
     questions!: Question[];
     loading = true;
 
     ngOnInit() {
-        if(this.authService.currentUser && this.searchByUser === 'true') {
+        if(this.authService.currentUser && this.searchByUser) {
             const id = this.authService.currentUser?._id || '';
                 this.questionService
                  .getQuestionsByUser(id, this.sort)
@@ -45,8 +45,15 @@ export class QuestionListComponent implements OnInit {
         }
     }
 
-    clicked() {
+    clicked(_id: string = '', active: Boolean = true) {
         // Prevent click on List item action.
+        const question = { _id, active };
+        this.questionService
+            .setActiveQuestion(question)
+            .subscribe(
+                () => this.questions.find(({ _id }) => _id === question._id)!.active = !question.active,
+                error => console.log(error)
+            );
         event?.stopPropagation();
     }
 }
