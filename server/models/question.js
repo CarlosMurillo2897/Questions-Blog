@@ -9,7 +9,7 @@ const QuestionSchema = new Schema({
     createdAt: { type: Date, default: Date.now, required: true },
     user: { type: ObjectId, ref: 'User', required: true },
     answers: [{ type: ObjectId, ref: 'Answer', default: [] }],
-    active: {type: Boolean, required: true, default: false },
+    active: {type: Boolean, required: true, default: true },
 });
 
 export default mongoose.model('Question', QuestionSchema);

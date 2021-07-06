@@ -1,6 +1,6 @@
 <form (ngSubmit)="onSubmit(f)" #f="ngForm">
     <mat-form-field>
-        <textarea matInput placeholder="Description" name="description" ngModel></textarea>
+        <textarea matInput placeholder="Description" name="description" ngModel disabled="{{!question.active}}"></textarea>
     </mat-form-field>
     <button type="submit" mat-raised-button color="accent" disabled="{{!question.active}}">Answer</button>
 </form>
