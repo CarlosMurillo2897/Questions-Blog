@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  // Run Application on LAN. Replace 'localhost' with your current local IP address. Example: http://192.168.100.41:3000/api/
   apiUrl: 'http://localhost:3000/api/',
 };
 

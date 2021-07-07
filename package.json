@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "start:server": "set NODE_ENV=development & set DEBUG=Questions-Blog* & nodemon --exec babel-node server/index.js",
-    "start:client": "ng serve"
+    "start:client": "ng serve --host 0.0.0.0"
   },
   "private": true,
   "dependencies": {
