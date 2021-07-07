@@ -36,3 +36,13 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
 ## Application Screen Shots
+
+![Home Page](../assets/Home.png?raw=true)
+
+![Home Page - User](../assets/Home-User.png?raw=true)
+
+![Sign Up Page](../assets/SignUp.png?raw=true)
+
+![Create Questions](../assets/Create-Question.png?raw=true)
+
+![Create Answers](../assets/Create-Answer.png=100x20)
