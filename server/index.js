@@ -2,8 +2,8 @@ import Debug from 'debug';
 import app from './app';
 import mongoose from 'mongoose';
 import { mongoUrl } from './config';
+import { PORT } from './config';
 
-const PORT = 3000;
 const debug = new Debug('Questions-Blog:root');
 
 async function start() {

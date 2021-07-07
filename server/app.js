@@ -1,6 +1,6 @@
 import express from 'express';
 import { question, auth } from './routes';
-
+import path from 'path';
 
 const app = express();
 
@@ -15,6 +15,18 @@ if(process.env.NODE_ENV.trim() === 'development') {
         next();
     });
 }
+
+if(process.env.NODE_ENV.trim() === 'production') {
+    app.use(
+        express.static(
+            path.join(
+                process.cwd(), 
+                'dist/Questions-Blog'
+            )
+        )
+    );
+}
+
 
 app.use('/api/questions', question);
 app.use('/api/auth', auth);
