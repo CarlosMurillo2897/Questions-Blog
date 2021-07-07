@@ -2,9 +2,11 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
 
+![Home Page](../assets/Home.png?raw=true)
+
 ## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Run `npm start` for a dev NODE server and Angular UI. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files, no matter if it's on Backend or Frontend, you can call API on `http://localhost:3000/`.
 
 ## Code scaffolding
 
