@@ -1,8 +1,6 @@
 # Questions-Blog
 
-![Home Page](../assets/Home.png?raw=true)
-
-Home Page - Screen Shot.
+<img alt="Home" src="../assets/Home.png" width="400" height="566" style="">
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
 
@@ -37,12 +35,6 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Application Screen Shots
 
-![Home Page](../assets/Home.png?raw=true)
+<img alt="User Home" src="../assets/Home-User.png" width="400" height="566">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img alt="Sign Up" src="../assets/SignUp.png" width="400" height="566">
 
-![Home Page - User](../assets/Home-User.png?raw=true)
-
-![Sign Up Page](../assets/SignUp.png?raw=true)
-
-![Create Questions](../assets/Create-Question.png?raw=true)
-
-![Create Answers](../assets/Create-Answer.png=100x20)
+<img alt="Create Questions" src="../assets/Create-Question.png" width="400" height="566">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img alt="Create Answers" src="../assets/Create-Answer.png" width="400" height="566">
