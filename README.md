@@ -1,6 +1,7 @@
 # Questions-Blog
 
 ![Home Page](../assets/Home.png?raw=true)
+
 Home Page - Screen Shot.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.1.
@@ -15,8 +16,11 @@ Run `npm start` for a dev NODE server and Angular UI. Navigate to `http://localh
 The app will automatically reload if you change any of the source files, according to where files belong if Server or Client side.
 
 ### Development Server and API (LAN)
+
 API is already configured to be accessed through LAN once `npm start` is executed, thanks to: `babel-node server/index.js`.
+
 Server is already configured to be accessed through LAN once `npm start` is executed, thanks to: `ng serve --host 0.0.0.0`, "--host 0.0.0.0" will use current local IP as URL.
+
 At this point can access Application using your current IP address and the choosed port (ex: http://192.168.100.41:4200/) however API URL is defined to point at your http://localhost:3000 so it's necessary to change this "localhost" for current IP address. Access src/environments/environment.ts file and proceed with change.
 
 ## Code scaffolding
