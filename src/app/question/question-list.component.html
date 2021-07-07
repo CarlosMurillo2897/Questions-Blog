@@ -13,7 +13,7 @@
         <mat-icon *ngIf="!searchByUser && !question.active">
           lock
         </mat-icon>
-      <mat-slide-toggle color="primary" checked="{{question.active}}" *ngIf="searchByUser" (click)="clicked(question._id, question.active)"></mat-slide-toggle>
+      <mat-slide-toggle color="primary" checked="{{question.active}}" *ngIf="searchByUser" (click)="toggleQuestions(question._id, question.active)"></mat-slide-toggle>
     </mat-list-item>
   </mat-list>
 </div>

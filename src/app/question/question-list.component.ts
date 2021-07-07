@@ -45,7 +45,7 @@ export class QuestionListComponent implements OnInit {
         }
     }
 
-    clicked(_id: string = '', active: Boolean = true) {
+    toggleQuestions(_id: string = '', active: Boolean = true) {
         // Prevent click on List item action.
         const question = { _id, active };
         this.questionService
